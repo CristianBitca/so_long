@@ -1,5 +1,5 @@
-Person ::= SEQUENCE {
-    name      PrintableString,
-    age       INTEGER,
-    location  ENUMERATED { home(0), work(1), other(2) } OPTIONAL
-}
+1111111111111
+10010000000C1
+1000011111001
+1P0011E000001
+1111111111111
