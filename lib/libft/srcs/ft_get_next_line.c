@@ -12,6 +12,23 @@
 
 #include "libft.h"
 
+static char	*ft_gnl_strjoin(char *dest, char *src)
+{
+	int		s_len;
+	int		d_len;
+	char	*buffer;
+
+	s_len = ft_strlen(src);
+	d_len = ft_strlen(dest);
+	buffer = ft_calloc(s_len + d_len + 1, sizeof(char));
+	if (!buffer)
+		return (NULL);
+	ft_strcpy(buffer, dest);
+	ft_strcpy(&buffer[d_len], src);
+	free(dest);
+	return (buffer);
+}
+
 void	rest(char *line, char *buffer)
 {
 	int		to_copy;
@@ -46,7 +63,7 @@ char	*get_new_line(int fd, char *line, char *buffer)
 			break ;
 		buffer[count] = '\0';
 		new_line = ft_strchr(buffer, '\n');
-		line = ft_strjoin(line, buffer);
+		line = ft_gnl_strjoin(line, buffer);
 		if (new_line)
 			break ;
 	}
