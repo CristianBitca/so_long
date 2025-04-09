@@ -14,22 +14,45 @@
 
 void	ft_init_map(t_game *game, char *map_file)
 {
-	int	file;
+	int	fd;
 
-	ft_init_map_info(game,map_file);
-	file = 0;
-	file = open(map_file, O_RDONLY);
-	ft_read_map(game, file);
-	close(file);
-
+	if (!ft_check_file(map_file))
+		return ;
+	ft_init_map_info(game, map_file);
+	fd = open(map_file, O_RDONLY);
+	ft_read_map(game, fd);
+	close(fd);
+	ft_map_info(game);
 }
 
-// If any leaks check here later.\/
+int	ft_check_file(char *map_file)
+{
+	int		fd;
+	int		len_ext;
+	int		len_fd;
+	char	*line;
+
+	len_fd = ft_strlen(map_file);
+	len_ext = ft_strlen(BER_EXTENSION);
+	map_file += len_fd - len_ext;
+	if (ft_strncmp(map_file, BER_EXTENSION, len_ext))
+		return (ft_printf(EXTENSION_ERROR), FALSE);
+	map_file -= len_fd - len_ext;
+	fd = open(map_file, O_RDONLY);
+	if (fd < 0)
+		return (ft_printf(FILE_OPEN_ERROR), close(fd), FALSE);
+	line = ft_get_next_line(fd);
+	if (!line)
+		return (ft_printf(EMPTY_FILE), close(fd), free(line), FALSE);
+	free(line);
+	return (TRUE);
+}
+
 void	ft_init_map_info(t_game *game, char *map_file)
 {
 	char	*line;
-	int	fd;
-	
+	int		fd;
+
 	fd = open(map_file, O_RDONLY);
 	line = ft_get_next_line(fd);
 	game->map_width = ft_strlen(line);
@@ -46,29 +69,20 @@ void	ft_init_map_info(t_game *game, char *map_file)
 
 void	ft_read_map(t_game *game, int fd)
 {
-	int	i;
+	int		i;
+	char	*line;
 
 	i = 0;
-	game->map = ft_calloc(game->map_width * sizeof(char), game->map_height * sizeof(char *));
-	i = 0;
-	game->map[i] = ft_get_next_line(fd);
-	while(i < game->map_height)
+	game->map = ft_calloc(game->map_height, sizeof(char *));
+	line = ft_get_next_line(fd);
+	game->map[i] = ft_strtrim(line, "\n");
+	while (i < game->map_height)
 	{
-		ft_printf("%s", game->map[i]);
+		free(line);
+		line = ft_get_next_line(fd);
 		i++;
-		game->map[i] = ft_get_next_line(fd);
+		game->map[i] = ft_strtrim(line, "\n");
 	}
-	i = 0;
-	while(i < game->map_height)
-	{
-		free(game->map[i]);
-		i++;
-	}
-	free(game->map);
-	game = 0;
+	close(fd);
 }
 
-void	ft_check_map()
-{
-
-}
