@@ -54,7 +54,4 @@ int		ft_check_file(char *map_file);
 void	ft_init_map_info(t_game *game, char *map_file);
 void	ft_read_map(t_game *game, int fd);
 
-
-void	ft_map_info(t_game *game);
-
 #endif

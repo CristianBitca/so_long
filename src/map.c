@@ -22,7 +22,6 @@ void	ft_init_map(t_game *game, char *map_file)
 	fd = open(map_file, O_RDONLY);
 	ft_read_map(game, fd);
 	close(fd);
-	ft_map_info(game);
 }
 
 int	ft_check_file(char *map_file)
