@@ -21,6 +21,8 @@
 # define EXTENSION_ERROR "Map extension should be .ber"
 # define EMPTY_FILE "Your file is empty.\n"
 # define FILE_OPEN_ERROR "Fail to open file.\n"
+# define WALL_ERROR "Map should be surrounded by walls.\n"
+# define BAD_CHAR "Map cointain an invalid character.\n"
 
 typedef enum e_bool
 {
@@ -50,8 +52,14 @@ typedef struct s_game
 }	t_game;
 
 void	ft_init_map(t_game *game, char *map_file);
-int		ft_check_file(char *map_file);
+void	ft_check_file(t_game *game,char *map_file);
 void	ft_init_map_info(t_game *game, char *map_file);
-void	ft_read_map(t_game *game, int fd);
+void	ft_read_map(t_game *game, char	*map_file);
+void	ft_check_map(t_game *game);
+void	ft_print_error(char *error_msg, t_game *game);
+void	ft_free_game(t_game *game);
 
-#endif
+void	ft_check_walls(t_game *game);
+void	ft_check_chars(t_game *game);
+
+#endif 

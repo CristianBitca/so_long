@@ -14,17 +14,21 @@
 
 void	ft_init_map(t_game *game, char *map_file)
 {
-	int	fd;
+	int	i;
 
-	if (!ft_check_file(map_file))
-		return ;
+	i = 0;
+	ft_check_file(game, map_file);
 	ft_init_map_info(game, map_file);
-	fd = open(map_file, O_RDONLY);
-	ft_read_map(game, fd);
-	close(fd);
+	ft_read_map(game, map_file);
+	// while (i < game->map_width)
+	// {
+	// 	printf("%s\n", game->map[i]);
+	// 	i++;
+	// }
+	// ft_check_map(game);
 }
 
-int	ft_check_file(char *map_file)
+void	ft_check_file(t_game *game, char *map_file)
 {
 	int		fd;
 	int		len_ext;
@@ -35,16 +39,16 @@ int	ft_check_file(char *map_file)
 	len_ext = ft_strlen(BER_EXTENSION);
 	map_file += len_fd - len_ext;
 	if (ft_strncmp(map_file, BER_EXTENSION, len_ext))
-		return (ft_printf(EXTENSION_ERROR), FALSE);
+		ft_print_error(EXTENSION_ERROR, game);
 	map_file -= len_fd - len_ext;
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
-		return (ft_printf(FILE_OPEN_ERROR), close(fd), FALSE);
+		ft_print_error(FILE_OPEN_ERROR, game);
 	line = ft_get_next_line(fd);
 	if (!line)
-		return (ft_printf(EMPTY_FILE), close(fd), free(line), FALSE);
+		ft_print_error(EMPTY_FILE, game);
 	free(line);
-	return (TRUE);
+	close(fd);
 }
 
 void	ft_init_map_info(t_game *game, char *map_file)
@@ -54,7 +58,7 @@ void	ft_init_map_info(t_game *game, char *map_file)
 
 	fd = open(map_file, O_RDONLY);
 	line = ft_get_next_line(fd);
-	game->map_width = ft_strlen(line);
+	game->map_width = ft_strlen(line) - 1;
 	game->map_height = 0;
 	while (line)
 	{
@@ -66,22 +70,27 @@ void	ft_init_map_info(t_game *game, char *map_file)
 	close(fd);
 }
 
-void	ft_read_map(t_game *game, int fd)
+void	ft_read_map(t_game *game, char	*map_file)
 {
 	int		i;
+	int		fd;
 	char	*line;
 
 	i = 0;
-	game->map = ft_calloc(game->map_height, sizeof(char *));
-	line = ft_get_next_line(fd);
-	game->map[i] = ft_strtrim(line, "\n");
+	fd = open(map_file, O_RDONLY);
 	while (i < game->map_height)
 	{
-		free(line);
 		line = ft_get_next_line(fd);
+		ft_printf("%s", line);
+		free(line);
 		i++;
-		game->map[i] = ft_strtrim(line, "\n");
 	}
 	close(fd);
 }
 
+// void	ft_check_map(t_game *game)
+// {
+// 	// ft_check_walls(game);
+// 	// ft_check_chars(game);
+
+// }
