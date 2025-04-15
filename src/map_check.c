@@ -61,33 +61,40 @@ void	ft_check_wall(t_game *game)
 
 void	ft_req_elemtents(t_game *game)
 {
-	int	p;
-	int	c;
-	int	e;
 	int	i;
 	int	j;
 
-	p = 0;
-	c = 0;
-	e = 0;
 	i = 0;
 	while (i++ < game->map_height - 1)
 	{
 		j = 0;
-		while (j++ < game->map_width -1)
+		while (j++ < game->map_width - 1)
 		{
 			if (game->map[i][j] == PLAYER_CHAR)
-				p++;
+				game->player++;
 			if (game->map[i][j] == COIN_CHAR)
-				c++;
+				game->coin++;
 			if (game->map[i][j] == EXIT_CHAR)
-				e++;
+				game->exit++;
 		}
 	}
-	if (p != 1)
+	if (game->player != 1)
 		ft_print_error(PLAYER_ERROR, game);
-	if (c < 1)
+	if (game->coin < 1)
 		ft_print_error(COIN_ERROR, game);
-	if (e != 1)
+	if (game->exit != 1)
 		ft_print_error(EXIT_ERROR, game);
+}
+
+void	ft_check_rectangular(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->map_height)
+	{
+		if (ft_strlen(game->map[i]) != (size_t)game->map_width)
+			ft_print_error(RECTANGULAR_ERROR, game);
+		i++;
+	}
 }

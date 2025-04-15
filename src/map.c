@@ -16,7 +16,9 @@ void	ft_init_map(t_game *game, char *map_file)
 {
 	ft_check_file(game, map_file);
 	ft_init_map_info(game, map_file);
-	ft_check_map(game);
+	// ft_check_map(game);
+	for (int i = 0; i < game->map_height; i++)
+		printf("%s", game->map[i]);
 }
 
 void	ft_check_file(t_game *game, char *map_file)
@@ -43,7 +45,6 @@ void	ft_init_map_info(t_game *game, char *map_file)
 	if (!line)
 		ft_print_error(EMPTY_FILE, game);
 	game->map_width = ft_strlen(line) - 1;
-	game->map_height = 0;
 	buffer = ft_strdup("");
 	buffer = ft_custom_strjoin(buffer, line);
 	while (line)
@@ -61,6 +62,7 @@ void	ft_init_map_info(t_game *game, char *map_file)
 
 void	ft_check_map(t_game *game)
 {
+	ft_check_rectangular(game);
 	ft_check_elements(game);
 	ft_check_wall(game);
 	ft_req_elemtents(game);

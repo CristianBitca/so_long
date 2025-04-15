@@ -26,6 +26,7 @@
 # define PLAYER_ERROR "Map should contain one PLAYER character (P)"
 # define COIN_ERROR "Map should contain at least one COIN character (C)"
 # define EXIT_ERROR "Map should contain one EXIT character (E)"
+# define RECTANGULAR_ERROR "Map is not rectangular\n"
 
 typedef enum e_bool
 {
@@ -52,6 +53,9 @@ typedef struct s_game
 	int		map_area;
 	int		player_x;
 	int		player_y;
+	int		player;
+	int		coin;
+	int		exit;
 }	t_game;
 
 void	ft_init_map(t_game *game, char *map_file);
@@ -67,5 +71,6 @@ char	*ft_custom_strjoin(char *s1, char *s2);
 void	ft_check_elements(t_game *game);
 void	ft_check_wall(t_game *game);
 void	ft_req_elemtents(t_game *game);
+void	ft_check_rectangular(t_game *game);
 
 #endif 
