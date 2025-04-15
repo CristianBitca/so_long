@@ -23,6 +23,9 @@
 # define FILE_OPEN_ERROR "Fail to open file.\n"
 # define WALL_ERROR "Map should be surrounded by walls.\n"
 # define BAD_CHAR "Map cointain an invalid character.\n"
+# define PLAYER_ERROR "Map should contain one PLAYER character (P)"
+# define COIN_ERROR "Map should contain at least one COIN character (C)"
+# define EXIT_ERROR "Map should contain one EXIT character (E)"
 
 typedef enum e_bool
 {
@@ -52,14 +55,17 @@ typedef struct s_game
 }	t_game;
 
 void	ft_init_map(t_game *game, char *map_file);
-void	ft_check_file(t_game *game,char *map_file);
+void	ft_check_file(t_game *game, char *map_file);
 void	ft_init_map_info(t_game *game, char *map_file);
-void	ft_read_map(t_game *game, char	*map_file);
 void	ft_check_map(t_game *game);
+
 void	ft_print_error(char *error_msg, t_game *game);
 void	ft_free_game(t_game *game);
 
-void	ft_check_walls(t_game *game);
-void	ft_check_chars(t_game *game);
+char	*ft_custom_strjoin(char *s1, char *s2);
+
+void	ft_check_elements(t_game *game);
+void	ft_check_wall(t_game *game);
+void	ft_req_elemtents(t_game *game);
 
 #endif 

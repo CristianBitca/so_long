@@ -4,7 +4,8 @@
 
 # Compiler and flags
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=address
+# CFLAGS  = -Wall -Wextra -Werror 
+CFLAGS  = -Wall -Wextra -Werror -fsanitize=address -g3 -O0
 
 # Directories
 SRC_DIR     = src

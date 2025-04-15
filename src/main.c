@@ -24,12 +24,10 @@ void	ft_free_game(t_game *game)
 {
 	int	i;
 
-	i = 0;
-	// while (i < game->map_height)
-	// {
-	// 	free(game->map[i]);
-	// 	i++;
-	// }
+	i = -1;
+	while (i++ < game->map_height)
+		free(game->map[i]);
+	free(game->map);
 	free(game);
 }
 
