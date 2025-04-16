@@ -27,6 +27,7 @@
 # define COIN_ERROR "Map should contain at least one COIN character (C)"
 # define EXIT_ERROR "Map should contain one EXIT character (E)"
 # define RECTANGULAR_ERROR "Map is not rectangular\n"
+# define EMPTY_LINE "File contain empty line\n"
 
 typedef enum e_bool
 {
@@ -61,6 +62,8 @@ typedef struct s_game
 void	ft_init_map(t_game *game, char *map_file);
 void	ft_check_file(t_game *game, char *map_file);
 void	ft_init_map_info(t_game *game, char *map_file);
+char	*ft_read_map(t_game *game, int fd);
+void	ft_check_line(t_game *game, char *line);
 void	ft_check_map(t_game *game);
 
 void	ft_print_error(char *error_msg, t_game *game);

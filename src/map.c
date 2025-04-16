@@ -16,9 +16,7 @@ void	ft_init_map(t_game *game, char *map_file)
 {
 	ft_check_file(game, map_file);
 	ft_init_map_info(game, map_file);
-	// ft_check_map(game);
-	for (int i = 0; i < game->map_height; i++)
-		printf("%s", game->map[i]);
+	ft_check_map(game);
 }
 
 void	ft_check_file(t_game *game, char *map_file)
@@ -35,29 +33,39 @@ void	ft_check_file(t_game *game, char *map_file)
 void	ft_init_map_info(t_game *game, char *map_file)
 {
 	int		fd;
-	char	*line;
 	char	*buffer;
 
 	fd = open(map_file, O_RDONLY);
 	if (fd <= 0)
 		ft_print_error(FILE_OPEN_ERROR, game);
+	buffer = ft_read_map(game, fd);
+	if(!ft_strnstr(buffer, "\n\n", ft_strlen(buffer)))
+		game->map = ft_split(buffer, '\n');
+	else
+		ft_print_error(EMPTY_LINE, game);
+	free(buffer);
+	close(fd);
+}
+char	*ft_read_map(t_game *game, int fd)
+{
+	char	*line;
+	char	*file_content;
+
 	line = ft_get_next_line(fd);
 	if (!line)
 		ft_print_error(EMPTY_FILE, game);
 	game->map_width = ft_strlen(line) - 1;
-	buffer = ft_strdup("");
-	buffer = ft_custom_strjoin(buffer, line);
+	file_content = ft_strdup("");
+	file_content = ft_custom_strjoin(file_content, line);
 	while (line)
 	{
 		game->map_height++;
 		line = ft_get_next_line(fd);
 		if (line)
-			buffer = ft_custom_strjoin(buffer, line);
+			file_content = ft_custom_strjoin(file_content, line);
 	}
 	free(line);
-	game->map = ft_split(buffer, '\n');
-	free(buffer);
-	close(fd);
+	return (file_content);
 }
 
 void	ft_check_map(t_game *game)
