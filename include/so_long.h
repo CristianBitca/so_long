@@ -123,8 +123,7 @@ void	ft_req_elemtents(t_game *game);
 void	ft_check_rectangular(t_game *game);
 void	ft_check_valid(t_game *game);
 
-int	ft_controler(t_game *game);
-int	ft_input_controller(int key, t_game *game);
+int	ft_input_controller(t_game *game);
 void	ft_move_up(t_game *game);
 void	ft_move_down(t_game *game);
 void	ft_move_left(t_game *game);

@@ -110,7 +110,7 @@ void	ft_check_valid(t_game *game)
 	int		x;
 	int		y;
 
-	map_copy = ft_dup_map(game ,game->map);
+	map_copy = ft_dup_map(game, game->map);
 	if (!map_copy)
 		ft_exit_game(game);
 	ft_flood_fill(map_copy, game->player_x, game->player_y);

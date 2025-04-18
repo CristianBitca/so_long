@@ -20,7 +20,7 @@ int	ft_key_press(int key, t_game *game)
 
 int	ft_key_release(int key, t_game *game)
 {
-	game->key = key;
+	game->key = key * 0;
 	return (EXIT_SUCCESS);
 }
 
@@ -29,8 +29,5 @@ void	ft_check_pos(t_game *game, int x, int y)
 	if (game->map[y][x] == EXIT_CHAR)
 		ft_exit_game(game);
 	if (game->map[y][x] == COIN_CHAR)
-	{
 		game->wallet++;
-		printf("You collected 1 coin now you have: %d", game->wallet);
-	}
 }

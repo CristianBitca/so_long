@@ -14,8 +14,8 @@
 
 int	render(t_game *game)
 {
-	ft_input_controller(game);
 	ft_render(game, &game->sprites);
+	ft_input_controller(game);
 	return(EXIT_SUCCESS);
 }
 

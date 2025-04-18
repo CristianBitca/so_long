@@ -52,7 +52,7 @@ char	**ft_dup_map(t_game *game, char **map)
 		i++;
 	}
 	buffer[i] = 0;
-	return (buffer);	
+	return (buffer);
 }
 
 void	ft_flood_fill(char **map, int x, int y)

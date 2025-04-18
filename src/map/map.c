@@ -39,13 +39,14 @@ void	ft_init_map_info(t_game *game, char *map_file)
 	if (fd <= 0)
 		ft_print_error(FILE_OPEN_ERROR, game);
 	buffer = ft_read_map(game, fd);
-	if(!ft_strnstr(buffer, "\n\n", ft_strlen(buffer)))
+	if (!ft_strnstr(buffer, "\n\n", ft_strlen(buffer)))
 		game->map = ft_split(buffer, '\n');
 	else
 		ft_print_error(EMPTY_LINE, game);
 	free(buffer);
 	close(fd);
 }
+
 char	*ft_read_map(t_game *game, int fd)
 {
 	char	*line;
