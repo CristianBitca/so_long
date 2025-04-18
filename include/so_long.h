@@ -91,7 +91,8 @@ typedef struct s_game
 	int		player;
 	int		coin;
 	int		exit;
-	int		key[255];
+	int		key;
+	int		wallet;
 }	t_game;
 
 void	ft_init_game(t_game *game, char *map_file);
@@ -123,7 +124,7 @@ void	ft_check_rectangular(t_game *game);
 void	ft_check_valid(t_game *game);
 
 int	ft_controler(t_game *game);
-int	ft_input_controller(t_game *game);
+int	ft_input_controller(int key, t_game *game);
 void	ft_move_up(t_game *game);
 void	ft_move_down(t_game *game);
 void	ft_move_left(t_game *game);
@@ -131,5 +132,6 @@ void	ft_move_right(t_game *game);
 int	ft_key_press(int key, t_game *game);
 int	ft_key_release(int key, t_game *game);
 int	render(t_game *game);
+void	ft_check_pos(t_game *game, int x, int y);
 
 #endif 
