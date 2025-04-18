@@ -20,7 +20,7 @@ MLX_LIB     = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 LIBFT_LIB   = -L$(LIBFT_DIR) -lft
 
 # Source files
-SRCS    = $(wildcard $(SRC_DIR)/*.c)
+SRCS    = $(shell find $(SRC_DIR) -name "*.c")
 OBJS    = $(SRCS:.c=.o)
 
 # Executable

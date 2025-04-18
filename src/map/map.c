@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../include/so_long.h"
 
 void	ft_init_map(t_game *game, char *map_file)
 {
@@ -74,4 +74,5 @@ void	ft_check_map(t_game *game)
 	ft_check_elements(game);
 	ft_check_wall(game);
 	ft_req_elemtents(game);
+	ft_check_valid(game);
 }

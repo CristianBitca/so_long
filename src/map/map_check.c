@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../include/so_long.h"
 
 void	ft_check_elements(t_game *game)
 {
@@ -29,6 +29,11 @@ void	ft_check_elements(t_game *game)
 				&& game->map[i][j] != EXIT_CHAR
 				&& game->map[i][j] != VOID_CHAR)
 				ft_print_error(BAD_CHAR, game);
+			if (game->map[i][j] == PLAYER_CHAR)
+			{
+				game->player_x = j;
+				game->player_y = i;
+			}
 			j++;
 		}
 		i++;
@@ -97,4 +102,30 @@ void	ft_check_rectangular(t_game *game)
 			ft_print_error(RECTANGULAR_ERROR, game);
 		i++;
 	}
+}
+
+void	ft_check_valid(t_game *game)
+{
+	char	**map_copy;
+	int		x;
+	int		y;
+
+	map_copy = ft_dup_map(game ,game->map);
+	if (!map_copy)
+		ft_exit_game(game);
+	ft_flood_fill(map_copy, game->player_x, game->player_y);
+	y = 0;
+	while (map_copy[y])
+	{
+		x = 0;
+		while (map_copy[y][x])
+		{
+			if (map_copy[y][x] == EXIT_CHAR
+				|| map_copy[y][x] == COIN_CHAR)
+				ft_print_error(VALID_ERROR, game);
+			x++;
+		}
+		y++;
+	}
+	ft_free_map(game, map_copy);
 }

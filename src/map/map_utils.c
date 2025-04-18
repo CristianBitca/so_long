@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../include/so_long.h"
 
 char	*ft_custom_strjoin(char *s1, char *s2)
 {
@@ -35,4 +35,47 @@ char	*ft_custom_strjoin(char *s1, char *s2)
 	free(s1);
 	free(s2);
 	return (dst);
+}
+
+char	**ft_dup_map(t_game *game, char **map)
+{
+	int		i;
+	char	**buffer;
+
+	i = 0;
+	buffer = ft_calloc(sizeof(char *), game->map_height + 1);
+	if (!buffer)
+		return (NULL);
+	while (i < game->map_height)
+	{
+		buffer[i] = ft_strdup(map[i]);
+		i++;
+	}
+	buffer[i] = 0;
+	return (buffer);	
+}
+
+void	ft_flood_fill(char **map, int x, int y)
+{
+	if (map[y][x] == WALL_CHAR
+		|| map[y][x] == VALID_CHAR)
+		return ;
+	map[y][x] = VALID_CHAR;
+	ft_flood_fill(map, x + 1, y);
+	ft_flood_fill(map, x - 1, y);
+	ft_flood_fill(map, x, y + 1);
+	ft_flood_fill(map, x, y - 1);
+}
+
+void	ft_free_map(t_game *game, char **map)
+{
+	int	i;
+
+	i = -1;
+	if (map)
+	{
+		while (i++ < game->map_height)
+			free(map[i]);
+		free(map);
+	}
 }
