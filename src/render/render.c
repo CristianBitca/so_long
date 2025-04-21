@@ -14,8 +14,9 @@
 
 int	render(t_game *game)
 {
-	ft_render(game, &game->sprites);
 	ft_input_controller(game);
+	ft_render(game, &game->sprites);
+	usleep(16000);
 	return(EXIT_SUCCESS);
 }
 
@@ -30,7 +31,9 @@ void	ft_render(t_game *game, t_textures *txt)
 		width = 0;
 		while (width < game->map_width)
 		{
-			ft_render_init(game, txt, game->map[height][width], width, height);
+			mlx_put_image_to_window(game->mlx, game->win, txt->floor, width * 64, height * 64);
+			if (game->map[height][width] != VOID_CHAR)
+				ft_render_init(game, txt, game->map[height][width], width, height);
 			width++; 
 		}
 		height++;
@@ -39,8 +42,8 @@ void	ft_render(t_game *game, t_textures *txt)
 
 void	ft_render_init(t_game *game, t_textures *txt, char c, int x, int y)
 {
-	if (c == VOID_CHAR)
-		mlx_put_image_to_window(game->mlx, game->win, txt->floor, x * 64, y * 64);
+	// if (c == VOID_CHAR)
+	// 	mlx_put_image_to_window(game->mlx, game->win, txt->floor, x * 64, y * 64);
 	if (c == WALL_CHAR)
 		mlx_put_image_to_window(game->mlx, game->win, txt->wall, x * 64, y * 64);
 	if (c == EXIT_CHAR)

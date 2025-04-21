@@ -18,7 +18,7 @@ void	ft_init_sprites(void *mlx, t_game *game)
 	int	height;
 
 	game->sprites.floor = mlx_xpm_file_to_image(mlx,
-			"assets/floor.xpm", &width, &height);
+			"assets/void.xpm", &width, &height);
 	if (game->sprites.floor == NULL)
 		ft_print_error(XPM_FLOOR, game);
 	game->sprites.collectible = mlx_xpm_file_to_image(mlx,

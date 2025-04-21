@@ -26,7 +26,6 @@ int	ft_input_controller(t_game *game)
 			ft_move_left(game);
 		if (game->key == D_KEY)
 			ft_move_right(game);
-		usleep(50000);
 	}
 	return(EXIT_SUCCESS);
 }
