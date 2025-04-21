@@ -71,7 +71,12 @@ typedef enum e_key_code {
 typedef struct s_texture
 {
 	void	*player;
-	void	*wall;
+	void	*l_wall;
+	void	*l_wall_c;
+	void	*r_wall;
+	void	*r_wall_c;
+	void	*u_wall;
+	void	*d_wall;
 	void	*floor;
 	void	*exit;
 	void	*collectible;
@@ -99,8 +104,11 @@ void	ft_init_game(t_game *game, char *map_file);
 int	ft_exit_game(t_game *game);
 
 void	ft_init_sprites(void *mlx, t_game *game);
-void	ft_render(t_game *game, t_textures *txt);
+void	ft_map_sprites(void *mlx, t_game *game);
 
+int	ft_render(t_game *game);
+void	ft_render_map(t_game *game, t_textures *txt);
+void	ft_render_wall(t_game *game, t_textures *txt, int x, int y);
 void	ft_render_init(t_game *game, t_textures *txt, char c, int x, int y);
 
 void	ft_init_map(t_game *game, char *map_file);
@@ -130,7 +138,6 @@ void	ft_move_left(t_game *game);
 void	ft_move_right(t_game *game);
 int	ft_key_press(int key, t_game *game);
 int	ft_key_release(int key, t_game *game);
-int	render(t_game *game);
 void	ft_check_pos(t_game *game, int x, int y);
 
 #endif 

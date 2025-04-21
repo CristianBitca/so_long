@@ -32,7 +32,6 @@ void	ft_free_game(t_game *game)
 		free(game->map);
 	}
 	mlx_destroy_image(game->mlx, game->sprites.floor);
-	mlx_destroy_image(game->mlx, game->sprites.wall);
 	mlx_destroy_image(game->mlx, game->sprites.player);
 	mlx_destroy_image(game->mlx, game->sprites.exit);
 	mlx_destroy_image(game->mlx, game->sprites.collectible);
@@ -62,7 +61,7 @@ int	main(int argc, char **argv)
 		mlx_hook(game->win, KEY_PRESS, 1L << 0, &ft_key_press, game);
 		mlx_hook(game->win, KEY_RELEASE, 1L << 1, &ft_key_release, game);
 		mlx_hook(game->win, CLOSE_ICON, 0, &ft_exit_game, game);
-		mlx_loop_hook(game->mlx, &render, game);
+		mlx_loop_hook(game->mlx, &ft_render, game);
 		mlx_loop(game->mlx);
 	}
 }
