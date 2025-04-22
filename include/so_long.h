@@ -96,7 +96,7 @@ typedef struct s_game
 	int		player;
 	int		coin;
 	int		exit;
-	int		key;
+	int		key[5];
 	int		wallet;
 }	t_game;
 
@@ -107,9 +107,9 @@ void	ft_init_sprites(void *mlx, t_game *game);
 void	ft_map_sprites(void *mlx, t_game *game);
 
 int	ft_render(t_game *game);
-void	ft_render_map(t_game *game, t_textures *txt);
-void	ft_render_wall(t_game *game, t_textures *txt, int x, int y);
-void	ft_render_init(t_game *game, t_textures *txt, char c, int x, int y);
+void	ft_render_map(t_game *game);
+void	ft_render_wall(t_game *game, int x, int y);
+void	ft_render_init(t_game *game, char c, int x, int y);
 
 void	ft_init_map(t_game *game, char *map_file);
 void	ft_check_file(t_game *game, char *map_file);
@@ -119,6 +119,7 @@ void	ft_check_map(t_game *game);
 
 void	ft_print_error(char *error_msg, t_game *game);
 void	ft_free_game(t_game *game);
+void	ft_free_sprites(t_game *game);
 
 char	*ft_custom_strjoin(char *s1, char *s2);
 char	**ft_dup_map(t_game *game, char **map);

@@ -14,24 +14,34 @@
 
 int	ft_input_controller(t_game *game)
 {
-	if (game->key)
+	if (game->key[0])
+		ft_exit_game(game);
+	if (game->key[1])
 	{
-		if (game->key == ESC_KEY)
-			ft_exit_game(game);
-		if (game->key == W_KEY)
-			ft_move_up(game);
-		if (game->key == S_KEY)
-			ft_move_down(game);
-		if (game->key == A_KEY)
-			ft_move_left(game);
-		if (game->key == D_KEY)
-			ft_move_right(game);
+		ft_move_up(game);
+		printf("up\n");
 	}
-	return(EXIT_SUCCESS);
+	if (game->key[2])
+	{
+		ft_move_down(game);
+		printf("down\n");
+	}
+	if (game->key[3])
+	{
+		ft_move_left(game);
+		printf("left\n");
+	}
+	if (game->key[4])
+	{
+		ft_move_right(game);
+		printf("right\n");
+	}
+	usleep(16000);
+	return (EXIT_SUCCESS);
 }
 
 void	ft_move_up(t_game *game)
-{	
+{
 	if (game->map[game->player_y - 1][game->player_x] != WALL_CHAR)
 	{
 		game->map[game->player_y][game->player_x] = VOID_CHAR;
@@ -53,7 +63,7 @@ void	ft_move_down(t_game *game)
 }
 
 void	ft_move_left(t_game *game)
-{	
+{
 	if (game->map[game->player_y][game->player_x - 1] != WALL_CHAR)
 	{
 		game->map[game->player_y][game->player_x] = VOID_CHAR;
@@ -64,7 +74,7 @@ void	ft_move_left(t_game *game)
 }
 
 void	ft_move_right(t_game *game)
-{	
+{
 	if (game->map[game->player_y][game->player_x + 1] != WALL_CHAR)
 	{
 		game->map[game->player_y][game->player_x] = VOID_CHAR;

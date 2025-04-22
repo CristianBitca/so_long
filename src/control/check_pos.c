@@ -14,13 +14,31 @@
 
 int	ft_key_press(int key, t_game *game)
 {
-	game->key = key;
+	if (key == ESC_KEY)
+		game->key[0] = 1;
+	if (key == W_KEY)
+		game->key[1] = 1;
+	if (key == S_KEY)
+		game->key[2] = 1;
+	if (key == A_KEY)
+		game->key[3] = 1;
+	if (key == D_KEY)
+		game->key[4] = 1;
 	return (EXIT_SUCCESS);
 }
 
 int	ft_key_release(int key, t_game *game)
 {
-	game->key = key * 0;
+	if (key == ESC_KEY)
+		game->key[0] = 0;
+	if (key == W_KEY)
+		game->key[1] = 0;
+	if (key == S_KEY)
+		game->key[2] = 0;
+	if (key == A_KEY)
+		game->key[3] = 0;
+	if (key == D_KEY)
+		game->key[4] = 0;
 	return (EXIT_SUCCESS);
 }
 

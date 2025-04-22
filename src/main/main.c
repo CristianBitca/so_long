@@ -12,38 +12,6 @@
 
 #include "../../include/so_long.h"
 
-void	ft_print_error(char *error_msg, t_game *game)
-{
-	ft_free_game(game);
-	ft_printf(ERROR);
-	ft_printf(error_msg);
-	exit(EXIT_FAILURE);
-}
-
-void	ft_free_game(t_game *game)
-{
-	int	i;
-
-	i = -1;
-	if (game->map)
-	{
-		while (i++ < game->map_height)
-			free(game->map[i]);
-		free(game->map);
-	}
-	mlx_destroy_image(game->mlx, game->sprites.floor);
-	mlx_destroy_image(game->mlx, game->sprites.player);
-	mlx_destroy_image(game->mlx, game->sprites.exit);
-	mlx_destroy_image(game->mlx, game->sprites.collectible);
-	free(game);
-}
-
-int	ft_exit_game(t_game *game)
-{
-	ft_free_game(game);
-	exit(EXIT_SUCCESS);
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	*game;
