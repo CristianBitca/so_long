@@ -17,69 +17,65 @@ int	ft_input_controller(t_game *game)
 	if (game->key[0])
 		ft_exit_game(game);
 	if (game->key[1])
-	{
 		ft_move_up(game);
-		printf("up\n");
-	}
 	if (game->key[2])
-	{
 		ft_move_down(game);
-		printf("down\n");
-	}
 	if (game->key[3])
-	{
 		ft_move_left(game);
-		printf("left\n");
-	}
 	if (game->key[4])
-	{
 		ft_move_right(game);
-		printf("right\n");
-	}
-	usleep(16000);
+	usleep(24000);
 	return (EXIT_SUCCESS);
 }
 
 void	ft_move_up(t_game *game)
 {
-	if (game->map[game->player_y - 1][game->player_x] != WALL_CHAR)
+	if (game->map[game->p_y - 1][game->p_x] != WALL_CHAR
+		&& (game->map[game->p_y - 1][game->p_x] != EXIT_CHAR
+		|| game->wallet == game->coin))
 	{
-		game->map[game->player_y][game->player_x] = VOID_CHAR;
-		ft_check_pos(game, game->player_x, game->player_y - 1);
-		game->map[game->player_y - 1][game->player_x] = PLAYER_CHAR;
-		game->player_y--;
+		game->map[game->p_y][game->p_x] = VOID_CHAR;
+		ft_check_pos(game, game->p_x, game->p_y - 1);
+		game->map[game->p_y - 1][game->p_x] = PLAYER_CHAR;
+		game->p_y--;
 	}
 }
 
 void	ft_move_down(t_game *game)
 {
-	if (game->map[game->player_y + 1][game->player_x] != WALL_CHAR)
+	if (game->map[game->p_y + 1][game->p_x] != WALL_CHAR
+		&& (game->map[game->p_y + 1][game->p_x] != EXIT_CHAR
+		|| game->wallet == game->coin))
 	{
-		game->map[game->player_y][game->player_x] = VOID_CHAR;
-		ft_check_pos(game, game->player_x, game->player_y + 1);
-		game->map[game->player_y + 1][game->player_x] = PLAYER_CHAR;
-		game->player_y++;
+		game->map[game->p_y][game->p_x] = VOID_CHAR;
+		ft_check_pos(game, game->p_x, game->p_y + 1);
+		game->map[game->p_y + 1][game->p_x] = PLAYER_CHAR;
+		game->p_y++;
 	}
 }
 
 void	ft_move_left(t_game *game)
 {
-	if (game->map[game->player_y][game->player_x - 1] != WALL_CHAR)
+	if (game->map[game->p_y][game->p_x - 1] != WALL_CHAR
+		&& (game->map[game->p_y][game->p_x - 1] != EXIT_CHAR
+		|| game->wallet == game->coin))
 	{
-		game->map[game->player_y][game->player_x] = VOID_CHAR;
-		ft_check_pos(game, game->player_x - 1, game->player_y);
-		game->map[game->player_y][game->player_x - 1] = PLAYER_CHAR;
-		game->player_x--;
+		game->map[game->p_y][game->p_x] = VOID_CHAR;
+		ft_check_pos(game, game->p_x - 1, game->p_y);
+		game->map[game->p_y][game->p_x - 1] = PLAYER_CHAR;
+		game->p_x--;
 	}
 }
 
 void	ft_move_right(t_game *game)
 {
-	if (game->map[game->player_y][game->player_x + 1] != WALL_CHAR)
+	if (game->map[game->p_y][game->p_x + 1] != WALL_CHAR
+		&& (game->map[game->p_y][game->p_x + 1] != EXIT_CHAR
+		|| game->wallet == game->coin))
 	{
-		game->map[game->player_y][game->player_x] = VOID_CHAR;
-		ft_check_pos(game, game->player_x + 1, game->player_y);
-		game->map[game->player_y][game->player_x + 1] = PLAYER_CHAR;
-		game->player_x++;
+		game->map[game->p_y][game->p_x] = VOID_CHAR;
+		ft_check_pos(game, game->p_x + 1, game->p_y);
+		game->map[game->p_y][game->p_x + 1] = PLAYER_CHAR;
+		game->p_x++;
 	}
 }

@@ -31,8 +31,8 @@ void	ft_check_elements(t_game *game)
 				ft_print_error(BAD_CHAR, game);
 			if (game->map[i][j] == PLAYER_CHAR)
 			{
-				game->player_x = j;
-				game->player_y = i;
+				game->p_x = j;
+				game->p_y = i;
 			}
 			j++;
 		}
@@ -113,7 +113,7 @@ void	ft_check_valid(t_game *game)
 	map_copy = ft_dup_map(game, game->map);
 	if (!map_copy)
 		ft_exit_game(game);
-	ft_flood_fill(map_copy, game->player_x, game->player_y);
+	ft_flood_fill(map_copy, game->p_x, game->p_y);
 	y = 0;
 	while (map_copy[y])
 	{

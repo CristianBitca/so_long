@@ -24,8 +24,8 @@ int	main(int argc, char **argv)
 		game->mlx = mlx_init();
 		if (!game->mlx)
 			ft_print_error(MLX_INIT_ERROR, game);
-		game->win = mlx_new_window(game->mlx, 1920, 1080, "so_long");
 		ft_init_game(game, argv[1]);
+		game->win = mlx_new_window(game->mlx, 1920, 1080, "so_long");
 		mlx_hook(game->win, KEY_PRESS, 1L << 0, &ft_key_press, game);
 		mlx_hook(game->win, KEY_RELEASE, 1L << 1, &ft_key_release, game);
 		mlx_hook(game->win, CLOSE_ICON, 0, &ft_exit_game, game);

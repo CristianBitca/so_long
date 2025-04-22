@@ -31,11 +31,12 @@ void	ft_free_game(t_game *game)
 			free(game->map[i]);
 		free(game->map);
 	}
-	ft_free_sprites(game);
+	ft_free_sprites1(game);
+	ft_free_sprites2(game);
 	free(game);
 }
 
-void	ft_free_sprites(t_game *game)
+void	ft_free_sprites1(t_game *game)
 {
 	if (game->sprites.floor)
 		mlx_destroy_image(game->mlx, game->sprites.floor);
@@ -57,6 +58,19 @@ void	ft_free_sprites(t_game *game)
 		mlx_destroy_image(game->mlx, game->sprites.r_wall_c);
 	if (game->sprites.u_wall)
 		mlx_destroy_image(game->mlx, game->sprites.u_wall);
+}
+
+void	ft_free_sprites2(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 12)
+	{
+		if (game->c_xt[i])
+			mlx_destroy_image(game->mlx, game->c_xt[i]);
+		i++;
+	}
 }
 
 int	ft_exit_game(t_game *game)

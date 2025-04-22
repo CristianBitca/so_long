@@ -16,5 +16,4 @@ void	ft_init_game(t_game *game, char *map_file)
 {
 	ft_init_sprites(game->mlx, game);
 	ft_init_map(game, map_file);
-	ft_render(game);
 }

@@ -16,10 +16,10 @@
 # include "../lib/minilibx-linux/mlx.h"
 # include "../lib/libft/include/libft.h"
 
-# define ERROR "ERROR\n"
+# define ERROR "Error\n"
 # define FILE_NAME "Enter the file name."
 # define BER_EXTENSION ".ber"
-# define EXTENSION_ERROR "Map extension should be .ber"
+# define EXTENSION_ERROR "Bad extension\n"
 # define EMPTY_FILE "Your file is empty.\n"
 # define FILE_OPEN_ERROR "Fail to open file.\n"
 # define WALL_ERROR "Map should be surrounded by walls.\n"
@@ -87,26 +87,32 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_textures 	sprites;
+	void		**c_xt[12];
 	char		**map;
 	int		map_width;
 	int		map_height;
-	int		map_area;
-	int		player_x;
-	int		player_y;
+	int		p_x;
+	int		p_y;
 	int		player;
 	int		coin;
 	int		exit;
 	int		key[5];
 	int		wallet;
+	int		move;
 }	t_game;
 
 void	ft_init_game(t_game *game, char *map_file);
 int	ft_exit_game(t_game *game);
 
 void	ft_init_sprites(void *mlx, t_game *game);
-void	ft_map_sprites(void *mlx, t_game *game);
+void	ft_map_sprites1(void *mlx, t_game *game, int width, int height);
+void	ft_map_sprites2(void *mlx, t_game *game, int width, int height);
+void	ft_char_sprites1(void *mlx, t_game *game, int width, int height);
+void	ft_char_sprites2(void *mlx, t_game *game, int width, int height);
 
 int	ft_render(t_game *game);
+void	ft_counter(t_game *game);
+int	ft_count(int num);
 void	ft_render_map(t_game *game);
 void	ft_render_wall(t_game *game, int x, int y);
 void	ft_render_init(t_game *game, char c, int x, int y);
@@ -119,7 +125,8 @@ void	ft_check_map(t_game *game);
 
 void	ft_print_error(char *error_msg, t_game *game);
 void	ft_free_game(t_game *game);
-void	ft_free_sprites(t_game *game);
+void	ft_free_sprites1(t_game *game);
+void	ft_free_sprites2(t_game *game);
 
 char	*ft_custom_strjoin(char *s1, char *s2);
 char	**ft_dup_map(t_game *game, char **map);

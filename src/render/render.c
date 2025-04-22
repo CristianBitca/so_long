@@ -16,6 +16,7 @@ int	ft_render(t_game *game)
 {
 	ft_input_controller(game);
 	ft_render_map(game);
+	ft_counter(game);
 	return (EXIT_SUCCESS);
 }
 
@@ -30,7 +31,7 @@ void	ft_render_map(t_game *game)
 		width = 0;
 		while (width < game->map_width)
 		{
-			ft_render_init(game, game->map[height][width], width, height);
+			ft_render_init(game, game->map[height][width], width, height + 1);
 			width++;
 		}
 		height++;
@@ -57,22 +58,22 @@ void	ft_render_init(t_game *game, char c, int x, int y)
 
 void	ft_render_wall(t_game *game, int x, int y)
 {
-	if (y == game->map_height - 1 && x == 0)
+	if (y == game->map_height && x == 0)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->sprites.l_wall_c, x * 64, y * 64);
-	else if (y == game->map_height - 1 && x == game->map_width - 1)
+	else if (y == game->map_height && x == game->map_width - 1)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->sprites.r_wall_c, x * 64, y * 64);
 	else if (y == 0 && x != game->map_width - 1 && x != 0)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->sprites.u_wall, x * 64, y * 64);
-	else if (y == game->map_height - 1 && x != game->map_width - 1 && x != 0)
+	else if (y == game->map_height && x != game->map_width - 1 && x != 0)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->sprites.d_wall, x * 64, y * 64);
-	else if (x == 0 && y != game->map_height - 1)
+	else if (x == 0 && y != game->map_height)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->sprites.l_wall, x * 64, y * 64);
-	else if (y != game->map_height - 1 && x == game->map_width - 1)
+	else if (y != game->map_height && x == game->map_width - 1)
 		mlx_put_image_to_window(game->mlx, game->win,
 			game->sprites.r_wall, x * 64, y * 64);
 	else
