@@ -31,14 +31,14 @@ void	ft_render_map(t_game *game)
 		width = 0;
 		while (width < game->map_width)
 		{
-			ft_render_init(game, game->map[height][width], width, height + 1);
+			ft_render_char(game, game->map[height][width], width, height + 1);
 			width++;
 		}
 		height++;
 	}
 }
 
-void	ft_render_init(t_game *game, char c, int x, int y)
+void	ft_render_char(t_game *game, char c, int x, int y)
 {
 	if (c == VOID_CHAR)
 		mlx_put_image_to_window(game->mlx, game->win,

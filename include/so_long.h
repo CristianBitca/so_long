@@ -101,37 +101,23 @@ typedef struct s_game
 	int		move;
 }	t_game;
 
-void	ft_init_game(t_game *game, char *map_file);
-int	ft_exit_game(t_game *game);
+int	ft_input_controller(t_game *game);
+void	ft_move_up(t_game *game);
+void	ft_move_down(t_game *game);
+void	ft_move_left(t_game *game);
+void	ft_move_right(t_game *game);
 
-void	ft_init_sprites(void *mlx, t_game *game);
-void	ft_map_sprites1(void *mlx, t_game *game, int width, int height);
-void	ft_map_sprites2(void *mlx, t_game *game, int width, int height);
-void	ft_char_sprites1(void *mlx, t_game *game, int width, int height);
-void	ft_char_sprites2(void *mlx, t_game *game, int width, int height);
-
-int	ft_render(t_game *game);
-void	ft_counter(t_game *game);
-int	ft_count(int num);
-void	ft_render_map(t_game *game);
-void	ft_render_wall(t_game *game, int x, int y);
-void	ft_render_init(t_game *game, char c, int x, int y);
-
-void	ft_init_map(t_game *game, char *map_file);
-void	ft_check_file(t_game *game, char *map_file);
-void	ft_init_map_info(t_game *game, char *map_file);
-char	*ft_read_map(t_game *game, int fd);
-void	ft_check_map(t_game *game);
+int	ft_key_press(int key, t_game *game);
+int	ft_key_release(int key, t_game *game);
+void	ft_check_pos(t_game *game, int x, int y);
 
 void	ft_print_error(char *error_msg, t_game *game);
 void	ft_free_game(t_game *game);
 void	ft_free_sprites1(t_game *game);
 void	ft_free_sprites2(t_game *game);
+int	ft_exit_game(t_game *game);
 
-char	*ft_custom_strjoin(char *s1, char *s2);
-char	**ft_dup_map(t_game *game, char **map);
-void	ft_flood_fill(char **map, int x, int y);
-void	ft_free_map(t_game *game, char **map);
+void	ft_init_game(t_game *game, char *map_file);
 
 void	ft_check_elements(t_game *game);
 void	ft_check_wall(t_game *game);
@@ -139,13 +125,31 @@ void	ft_req_elemtents(t_game *game);
 void	ft_check_rectangular(t_game *game);
 void	ft_check_valid(t_game *game);
 
-int	ft_input_controller(t_game *game);
-void	ft_move_up(t_game *game);
-void	ft_move_down(t_game *game);
-void	ft_move_left(t_game *game);
-void	ft_move_right(t_game *game);
-int	ft_key_press(int key, t_game *game);
-int	ft_key_release(int key, t_game *game);
-void	ft_check_pos(t_game *game, int x, int y);
+char	*ft_custom_strjoin(char *s1, char *s2);
+char	**ft_dup_map(t_game *game, char **map);
+void	ft_flood_fill(char **map, int x, int y);
+void	ft_free_map(t_game *game, char **map);
+
+void	ft_init_map(t_game *game, char *map_file);
+void	ft_check_file(t_game *game, char *map_file);
+void	ft_init_map_info(t_game *game, char *map_file);
+char	*ft_read_map(t_game *game, int fd);
+void	ft_check_map(t_game *game);
+
+void	ft_count_coin(t_game *game);
+int	ft_count(int num);
+void	ft_count_move(t_game *game);
+void	ft_counter(t_game *game);
+
+int	ft_render(t_game *game);
+void	ft_render_map(t_game *game);
+void	ft_render_char(t_game *game, char c, int x, int y);
+void	ft_render_wall(t_game *game, int x, int y);
+
+void	ft_init_sprites(void *mlx, t_game *game);
+void	ft_map_sprites1(void *mlx, t_game *game, int width, int height);
+void	ft_map_sprites2(void *mlx, t_game *game, int width, int height);
+void	ft_char_sprites1(void *mlx, t_game *game, int width, int height);
+void	ft_char_sprites2(void *mlx, t_game *game, int width, int height);
 
 #endif 
