@@ -53,7 +53,8 @@ typedef enum e_map_char
 	VALID_CHAR = 'V'
 }	t_map_char;
 
-typedef enum e_key_code {
+typedef enum e_key_code
+{
 	CLOSE_ICON = 17,
 	ESC_KEY = 65307,
 	KEY_PRESS = 2,
@@ -80,42 +81,42 @@ typedef struct s_texture
 	void	*floor;
 	void	*exit;
 	void	*collectible;
-} t_textures;
+}	t_textures;
 
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	t_textures 	sprites;
+	t_textures	sprites;
 	void		**c_xt[12];
 	char		**map;
-	int		map_width;
-	int		map_height;
-	int		p_x;
-	int		p_y;
-	int		player;
-	int		coin;
-	int		exit;
-	int		key[5];
-	int		wallet;
-	int		move;
+	int			map_width;
+	int			map_height;
+	int			p_x;
+	int			p_y;
+	int			player;
+	int			coin;
+	int			exit;
+	int			key[5];
+	int			wallet;
+	int			move;
 }	t_game;
 
-int	ft_input_controller(t_game *game);
+int		ft_input_controller(t_game *game);
 void	ft_move_up(t_game *game);
 void	ft_move_down(t_game *game);
 void	ft_move_left(t_game *game);
 void	ft_move_right(t_game *game);
 
-int	ft_key_press(int key, t_game *game);
-int	ft_key_release(int key, t_game *game);
+int		ft_key_press(int key, t_game *game);
+int		ft_key_release(int key, t_game *game);
 void	ft_check_pos(t_game *game, int x, int y);
 
 void	ft_print_error(char *error_msg, t_game *game);
 void	ft_free_game(t_game *game);
 void	ft_free_sprites1(t_game *game);
 void	ft_free_sprites2(t_game *game);
-int	ft_exit_game(t_game *game);
+int		ft_exit_game(t_game *game);
 
 void	ft_init_game(t_game *game, char *map_file);
 
@@ -137,11 +138,11 @@ char	*ft_read_map(t_game *game, int fd);
 void	ft_check_map(t_game *game);
 
 void	ft_count_coin(t_game *game);
-int	ft_count(int num);
+int		ft_count(int num);
 void	ft_count_move(t_game *game);
 void	ft_counter(t_game *game);
 
-int	ft_render(t_game *game);
+int		ft_render(t_game *game);
 void	ft_render_map(t_game *game);
 void	ft_render_char(t_game *game, char c, int x, int y);
 void	ft_render_wall(t_game *game, int x, int y);

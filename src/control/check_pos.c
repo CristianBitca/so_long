@@ -44,7 +44,7 @@ int	ft_key_release(int key, t_game *game)
 
 void	ft_check_pos(t_game *game, int x, int y)
 {
-	if (game->map[y][x] == EXIT_CHAR 
+	if (game->map[y][x] == EXIT_CHAR
 		&& game->wallet == game->coin)
 		ft_exit_game(game);
 	if (game->map[y][x] == COIN_CHAR)

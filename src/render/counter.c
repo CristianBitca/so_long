@@ -22,17 +22,17 @@ void	ft_count_coin(t_game *game)
 	while (i != 3)
 	{
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->c_xt[n % 10] , i * 64, 0 * 64);
+			game->c_xt[n % 10], i * 64, 0 * 64);
 		n /= 10;
 		i--;
 	}
 	mlx_put_image_to_window(game->mlx, game->win,
-		game->c_xt[10] , i * 64, 0 * 64);
+		game->c_xt[10], i * 64, 0 * 64);
 	n = game->wallet;
 	while (i--)
 	{
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->c_xt[n % 10] , i * 64, 0 * 64);
+			game->c_xt[n % 10], i * 64, 0 * 64);
 		n /= 10;
 	}
 }
@@ -64,7 +64,7 @@ void	ft_count_move(t_game *game)
 	while (c)
 	{
 		mlx_put_image_to_window(game->mlx, game->win,
-			game->c_xt[n % 10] , i * 64, 0 * 64);
+			game->c_xt[n % 10], i * 64, 0 * 64);
 		n /= 10;
 		i--;
 		c--;
@@ -84,5 +84,4 @@ void	ft_counter(t_game *game)
 		ft_count_move(game);
 		i++;
 	}
-
 }
